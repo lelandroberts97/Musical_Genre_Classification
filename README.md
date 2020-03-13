@@ -46,6 +46,8 @@ All of the hidden layers used the RELU activation function and the output layer 
 
 To look deeper into what was happening with the model, I computed a confusion matrix to visualize the model's predictions against the actual values. What I found was really interesting!
 
+![](./images/confusion_matrix.png)
+
 The computer seems to be confusing some genres for others similarly to how humans would! For example, the model hardly ever predicted blues, and only correctly classified 35% of blues songs, but a majority of the misclassifications were jazz and rock, nearly all the rest of them being classical. This makes a lot of sense! Jazz and blues are very similar styles of music, and rock music was heavily influenced by, and really came out of blues music. Blues also contains a lot of piano, which is characteristic of a lot of classical music.
 
 The model also had a tough time distinguishing between reggae and hiphop. Half of the misclassifications for reggae were hiphop and vise versa. Again, this makes sense since reggae music heavily influenced hiphop music and share similar characteristics. This is pretty cool!
