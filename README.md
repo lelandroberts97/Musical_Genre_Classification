@@ -1,4 +1,5 @@
-# Music Genre Classification
+# Musical Genre Classification
+**IMPORTANT NOTE:** the data was too large to store on github, so I left it out. If you would like to work off of these notebooks, the data can be found here: http://marsyas.info/downloads/datasets.html. After downloading the data, I combined all of the files into a single folder and named it "wavfiles." For the code to run, this folder must be placed in the empty "data" folder. All of the csv files are also set to be exported to this folder. Happy coding!
 
 ## Problem Statement
 Music information retrieval (MIR) is a large area of research dedicated to trying to extract useful information from music. Automatic genre classification is one of the tasks motivating this research. An automatic genre classification algorithm could greatly increase efficiency for music databases such as AllMusic. It could also help music recommender systems and playlist generators that companies like Spotify and Pandora use. The goal of this project is to use a convolutional neural network (CNN) to classifty a song by its genre. Specifically, the metric I will be using is accuracy, and I will compare this model to a feed forward neural network (FFNN) for comparisson. CNNs have additional layers for edge detection that make them well suited for image classification problems, but they tend to be more computationally expensive than FFNNs. If a FFNN could perform just as well, there would be no need to use a CNN. 
@@ -7,10 +8,8 @@ Music information retrieval (MIR) is a large area of research dedicated to tryin
 1. [Data Gathering](https://github.com/lelandroberts97/Musical_Genre_Classification/blob/master/code/01_Data_Gathering.ipynb)
 2. [Data Cleaning](https://github.com/lelandroberts97/Musical_Genre_Classification/blob/master/code/02_Data_Cleaning.ipynb)
 3. [Exploratory Data Analysis](https://github.com/lelandroberts97/Musical_Genre_Classification/blob/master/code/03_EDA.ipynb)
-4. [Convolutional Neural Network]()
-5. [CNN Exploration]()
-
-**IMPORTANT NOTE:** the data was too large to store on github, so I left it out. If you would like to work off of these notebooks, the data can be found here: http://marsyas.info/downloads/datasets.html. After downloading the data, I combined all of the files into a single folder and named it "wavfiles." For the code to run, this folder must be placed in the empty "data" folder. All of the csv files are also set to be exported to this folder. Happy coding!
+4. [Convolutional Neural Network](https://github.com/lelandroberts97/Musical_Genre_Classification/blob/master/code/04_CNN.ipynb)
+5. [CNN Exploration](https://github.com/lelandroberts97/Musical_Genre_Classification/blob/master/code/05_CNN_Exploration.ipynb)
 
 ## Executive Summary
 
@@ -29,7 +28,7 @@ Lastly, for the numeric features, I wrote a function that computed the first 13 
 ### Data Cleaning & EDA
 The only data cleaning that had to be done was mapping the genre labels to numeric values. I also graphed one mel spectrogram for each genre to see what they looked like.
 
-**ADD IMAGE HERE!**
+![](./images/mel_spectrograms.png)
 
 ### Modeling
 I tried several different architectures for both the FFNN and the CNN. The final FFNN achieved a training score (accuracy) of 69% and a testing score of 45%. The final CNN achieved a training score of 84% and a testing score of 68%. As suspected, the CNN did do much better, but it was still overfit. Increasing the number of epochs likely wouldn't help because it became increasingly overfit after about 15 epochs (as did most of the models I tried). 
@@ -42,6 +41,7 @@ Here is a summary of the final architecture for the CNN:
 5. Max pooling layer: 2 x 4
 6. Dense layer: 64 neurons
 7. Output layer: 10 neurons for the 10 different genres
+
 All of the hidden layers used the RELU activation function and the output layer used the softmax function. The loss was calculated using the categorical crossentropy function. Dropout was also used to prevent overfitting.
 
 To look deeper into what was happening with the model, I computed a confusion matrix to visualize the model's predictions against the actual values. What I found was really interesting!
